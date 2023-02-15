@@ -35,7 +35,7 @@ export default class Bparent extends Component<any,any> {
       for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (copyValue[a] && copyValue[a] == copyValue[b] && copyValue[a] == copyValue[c]) {
-          this.setState({ win: this.state.XIsNext ? "Wygrał krzyżyk!" : "Wygrało kółako!",winPos:lines[i] })
+          this.setState({ win: this.state.XIsNext ? "Wygrał krzyżyk!" : "Wygrało kółko!",winPos:lines[i] })
           
         }
       }
