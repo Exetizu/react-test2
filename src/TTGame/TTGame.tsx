@@ -1,7 +1,7 @@
 import { Component } from "react";
-import Button from "./Button";
-import "./test.css";
-export default class Bparent extends Component<any, any> {
+import TTSquare from "./TTSquare";
+import "./TTstyle.css";
+export default class TTGame extends Component<any, any> {
    constructor(props: any) {
       super(props);
       this.state = {
@@ -10,7 +10,7 @@ export default class Bparent extends Component<any, any> {
          win: "",
          score1: 0,
          score2: 0,
-         winPos: Array(3).fill(null),
+         winComb: Array(3).fill(null),
       };
    }
    click(id: number) {
@@ -20,7 +20,7 @@ export default class Bparent extends Component<any, any> {
             copyValue[id] = this.state.XIsNext ? "X" : "O";
          }
          this.setState({ value: copyValue });
-         const lines = [
+         const savedWinComb = [
             [0, 1, 2],
             [3, 4, 5],
             [6, 7, 8],
@@ -30,8 +30,8 @@ export default class Bparent extends Component<any, any> {
             [0, 4, 8],
             [2, 4, 6],
          ];
-         for (let i = 0; i < lines.length; i++) {
-            const [a, b, c] = lines[i];
+         for (let i = 0; i < savedWinComb.length; i++) {
+            const [a, b, c] = savedWinComb[i];
             if (
                copyValue[a] &&
                copyValue[a] === copyValue[b] &&
@@ -41,7 +41,7 @@ export default class Bparent extends Component<any, any> {
                   win: this.state.XIsNext
                      ? "Wygrał krzyżyk!"
                      : "Wygrało kółko!",
-                  winPos: lines[i],
+                  winComb: savedWinComb[i],
                });
             }
          }
@@ -60,17 +60,17 @@ export default class Bparent extends Component<any, any> {
             score2: this.state.XIsNext
                ? this.state.score2 + 1
                : this.state.score2,
-            winPos: Array(3).fill(null),
+            winComb: Array(3).fill(null),
          });
    }
    init() {
       const a: any = [];
       for (let i = 0; i < 9; i++) {
          a.push(
-            <Button
+            <TTSquare
                className={
                   this.state.win !== "" &&
-                  this.state.winPos.some((e: number) => {
+                  this.state.winComb.some((e: number) => {
                      return e === i ? true : false;
                   })
                      ? this.state.XIsNext
@@ -85,20 +85,27 @@ export default class Bparent extends Component<any, any> {
             />,
          );
       }
+
       return a;
    }
    render() {
       return (
          <div>
             <div className="grid">{this.init()}</div>
-            <Button
+            <TTSquare
                value={"Rst"}
                onClick={() => {
                   this.restart();
                }}
             />
-            <Button className="win-comb-X" value={"P1:" + this.state.score1} />
-            <Button className="win-comb-O" value={"P2:" + this.state.score2} />
+            <TTSquare
+               className="win-comb-X"
+               value={"P1:" + this.state.score1}
+            />
+            <TTSquare
+               className="win-comb-O"
+               value={"P2:" + this.state.score2}
+            />
             <div className="win">{this.state.win}</div>
          </div>
       );

@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Bparent from "./Bparent";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import TTGame from "./TTGame/TTGame";
 
 const root = ReactDOM.createRoot(
    document.getElementById("root") as HTMLElement,
 );
 root.render(
    <React.StrictMode>
-      <Bparent />
+      <TTGame></TTGame>
    </React.StrictMode>,
 );
 
