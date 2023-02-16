@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import TTGame from "./TTGame/TTGame";
 
 const root = ReactDOM.createRoot(
-   document.getElementById("root") as HTMLElement,
+   document.getElementById("TTGame") as HTMLElement,
 );
 root.render(
    <React.StrictMode>
