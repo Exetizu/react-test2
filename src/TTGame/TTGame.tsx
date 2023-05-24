@@ -11,6 +11,7 @@ export default class TTGame extends Component<any, any> {
          score1: 0,
          score2: 0,
          winComb: Array(3).fill(null),
+         apiResponse: "",
       };
    }
    click(id: number) {
@@ -46,6 +47,21 @@ export default class TTGame extends Component<any, any> {
             }
          }
          this.setState({ XIsNext: !this.state.XIsNext });
+         console.log(this.state.value);
+
+         fetch("http://localhost:9000/testAPI", {
+            method: "POST",
+            connection: {
+               "content-type": "application/json",
+            },
+            // We convert the React state to JSON and send it as the POST body
+            body: this.state.value,
+         })
+            .then((res) => res.json())
+            .then((res) => {
+               console.log(res["value"]);
+               this.setState({ value: res["value"] });
+            });
       } else return;
    }
    restart() {
@@ -62,6 +78,23 @@ export default class TTGame extends Component<any, any> {
                : this.state.score2,
             winComb: Array(3).fill(null),
          });
+      else
+         this.setState({
+            XIsNext: true,
+            value: Array(9).fill(null),
+            win: "",
+            score1: this.state.score1,
+            score2: this.state.score2,
+            winComb: Array(3).fill(null),
+         });
+   }
+   callAPI() {
+      fetch("http://localhost:9000/testAPI")
+         .then((res) => res.json())
+         .then((res) => this.setState({ value: res["value"] }));
+   }
+   componentWillMount() {
+      this.callAPI();
    }
    init() {
       const a: any = [];
@@ -91,6 +124,7 @@ export default class TTGame extends Component<any, any> {
    render() {
       return (
          <div>
+            <p className="App-intro">{this.state.apiResponse}</p>
             <div className="grid">{this.init()}</div>
             <TTSquare
                value={"Rst"}

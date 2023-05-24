@@ -9,7 +9,8 @@
       "react-app/jest",
       "plugin:import/typescript",
       "plugin:prettier/recommended",
-      "eslint:recommended"
+      "eslint:recommended",
+      "plugin:react-hooks/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
