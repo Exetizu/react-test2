@@ -62,6 +62,15 @@ export default class TTGame extends Component<any, any> {
                : this.state.score2,
             winComb: Array(3).fill(null),
          });
+      else
+         this.setState({
+            XIsNext: true,
+            value: Array(9).fill(null),
+            win: "",
+            score1: this.state.score1,
+            score2: this.state.score2,
+            winComb: Array(3).fill(null),
+         });
    }
    init() {
       const a: any = [];
