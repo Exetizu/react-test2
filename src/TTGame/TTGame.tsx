@@ -49,19 +49,19 @@ export default class TTGame extends Component<any, any> {
          this.setState({ XIsNext: !this.state.XIsNext });
          console.log(this.state.value);
 
-         fetch("http://localhost:9000/testAPI", {
-            method: "POST",
-            connection: {
-               "content-type": "application/json",
-            },
-            // We convert the React state to JSON and send it as the POST body
-            body: this.state.value,
-         })
-            .then((res) => res.json())
-            .then((res) => {
-               console.log(res["value"]);
-               this.setState({ value: res["value"] });
-            });
+         // fetch("http://localhost:9000/testAPI", {
+         //    method: "POST",
+         //    connection: {
+         //       "content-type": "application/json",
+         //    },
+         //    // We convert the React state to JSON and send it as the POST body
+         //    body: this.state.value,
+         // })
+         //    .then((res) => res.json())
+         //    .then((res) => {
+         //       console.log(res["value"]);
+         //       this.setState({ value: res["value"] });
+         //    });
       } else return;
    }
    restart() {
@@ -88,13 +88,13 @@ export default class TTGame extends Component<any, any> {
             winComb: Array(3).fill(null),
          });
    }
-   callAPI() {
-      fetch("http://localhost:9000/testAPI")
-         .then((res) => res.json())
-         .then((res) => this.setState({ value: res["value"] }));
-   }
+   // callAPI() {
+   //    fetch("http://localhost:9000/testAPI")
+   //       .then((res) => res.json())
+   //       .then((res) => this.setState({ value: res["value"] }));
+   // }
    componentWillMount() {
-      this.callAPI();
+      // this.callAPI();
    }
    init() {
       const a: any = [];
